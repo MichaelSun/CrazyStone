@@ -1,9 +1,12 @@
 <resources>
-    <string name="app_name">CrazyStone</string>
+    <string name="app_name">疯牛</string>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="market_title">行情</string>
+    <string name="info_title">咨询</string>
+    <string name="explore_title">发现</string>
 
-<!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="action_settings">设置</string>
+    <string name="activity_searchtag">搜索</string>
+    <string name="title_edit">编辑</string>
+    <string name="title_stock">我的自选股</string>
 </resources>

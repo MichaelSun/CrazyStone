@@ -3,12 +3,21 @@ package noyaxe.crazystone.fragment;
 import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import android.widget.ImageView;
+import android.widget.Toast;
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+import butterknife.OnClick;
 import noyaxe.crazystone.R;
+import noyaxe.crazystone.adapter.BaseFragmentPagerAdapter;
+
+import java.util.ArrayList;
 
 public class StockFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
@@ -16,6 +25,21 @@ public class StockFragment extends Fragment {
 
     private String mParam1;
     private String mParam2;
+
+    @InjectView(R.id.tablayout)
+    TabLayout mTablayout;
+
+    @InjectView(R.id.vp_main)
+    ViewPager mViewPager;
+
+    @InjectView(R.id.search)
+    ImageView mSearchImageView;
+
+    private Fragment mMarketFragment;
+    private Fragment mInfoFragment;
+    private Fragment mExploreFragment;
+
+    private BaseFragmentPagerAdapter mFragmentPagerAdapter;
 
     private OnFragmentInteractionListener mListener;
 
@@ -45,7 +69,12 @@ public class StockFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_stock, container, false);
+        View ret = inflater.inflate(R.layout.fragment_stock, container, false);
+        ButterKnife.inject(this, ret);
+
+        initUI();
+
+        return ret;
     }
 
     public void onButtonPressed(Uri uri) {
@@ -71,9 +100,35 @@ public class StockFragment extends Fragment {
         mListener = null;
     }
 
+//    @Override
+//    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+//        inflater.inflate(R.menu.menu_main, menu);
+//    }
+
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         public void onFragmentInteraction(Uri uri);
+    }
+
+    private void initUI() {
+        ArrayList<Fragment> fragments = new ArrayList<>();
+        mMarketFragment = new MarketFragment();
+        mInfoFragment = new InfoFragment();
+        mExploreFragment = new ExploreFragment();
+
+        fragments.add(mMarketFragment);
+        fragments.add(mInfoFragment);
+        fragments.add(mExploreFragment);
+
+        mFragmentPagerAdapter = new BaseFragmentPagerAdapter(getActivity().getApplicationContext(), getActivity().getSupportFragmentManager(), fragments);
+        mViewPager.setOffscreenPageLimit(3);
+        mViewPager.setAdapter(mFragmentPagerAdapter);
+        mTablayout.setupWithViewPager(mViewPager);
+    }
+
+    @OnClick(R.id.search)
+    public void search() {
+        Toast.makeText(getActivity(), android.R.string.search_go, Toast.LENGTH_LONG).show();
     }
 
 }

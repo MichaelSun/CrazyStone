@@ -1,13 +1,58 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context="noyaxe.crazystone.fragment.StockFragment">
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                 android:id="@+id/maincontent"
+                                                 android:layout_width="match_parent"
+                                                 android:layout_height="match_parent">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
+        android:id="@+id/title"
+        android:background="@color/bg_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Stock Fragment"/>
+        android:layout_height="@dimen/tabs_height"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/title_edit"
+            android:gravity="center"
+            android:textColor="@android:color/white"/>
 
-</FrameLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/title_stock"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            android:textSize="20sp"
+            android:textColor="@android:color/white"/>
+
+        <ImageView
+            android:id="@+id/search"
+            android:layout_width="@dimen/tabs_height"
+            android:layout_height="@dimen/tabs_height"
+            android:src="@drawable/ic_actionbar_search"
+            android:scaleType="center"
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tablayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tabs_height"
+        android:background="@color/bg_toolbar"
+        android:layout_below="@id/title"
+        style="@style/CustomTabLayout"
+        app:tabMode="scrollable"/>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tablayout"
+        android:layout_alignParentBottom="true"
+        android:background="@color/main_background"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+</RelativeLayout>
