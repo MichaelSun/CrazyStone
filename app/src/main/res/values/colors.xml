@@ -7,7 +7,7 @@
     <color name="transparent">#00000000</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
-    <color name="logo_color">#FFCB553B</color>
+    <color name="title_background">#cb221a</color>
 
     <drawable name="white">#FFFFFF</drawable>
     <drawable name="black">#000000</drawable>
